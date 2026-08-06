@@ -1,0 +1,27 @@
+# Secrets
+.env
+.streamlit/secrets.toml
+*.env
+
+# Virtual environments and Python cache
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Editor and system files
+.vscode/
+.idea/
+.DS_Store
+
+# Temporary files
+.cache/
+
+# Generated vector databases and logs
+chroma_db/
+chroma_db_fallback/
+logs/
+*.log
+
+# Old trained-model backups
+models/model_backup_*.pkl
