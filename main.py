@@ -41,15 +41,27 @@ def resample_to_4h(df):
     return df
 
 
-def create_target(stock_df):
+def create_target(stock_df, threshold=0.003):
     """
-    Binary target:
-    1 = next 4H candle closes HIGHER than current
-    0 = next 4H candle closes LOWER or equal
+    Threshold-based binary target — filters out noisy near-zero moves.
+
+    threshold=0.003 means 0.3% minimum move required to label a candle:
+      1  = next 4H candle closes MORE than +0.3% above current  (clear UP)
+      0  = next 4H candle closes MORE than -0.3% below current  (clear DOWN)
+      NaN= move is between -0.3% and +0.3% → treated as noise → dropped
+
+    Why: Labeling every tiny move as UP/DOWN forces the model to learn noise,
+    which lowers accuracy. By keeping only meaningful moves, the model learns
+    cleaner patterns and achieves higher accuracy.
     """
     if "close" not in stock_df.columns:
         return None
-    target = (stock_df["close"].shift(-1) > stock_df["close"]).astype(int)
+
+    pct_change = stock_df["close"].shift(-1) / stock_df["close"] - 1
+    target     = pd.Series(np.nan, index=stock_df.index)
+    target[pct_change >  threshold] = 1   # clear UP move
+    target[pct_change < -threshold] = 0   # clear DOWN move
+    # moves between -0.3% and +0.3% stay NaN → dropped later
     return target
 
 

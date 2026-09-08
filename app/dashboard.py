@@ -30,8 +30,8 @@ st_autorefresh(interval=2 * 60 * 1000, key="auto_refresh")
 
 st.markdown("""
 <style>
-.section-label{font-size:12px;font-weight:600;color:#666;margin-bottom:10px;letter-spacing:0.06em;text-transform:uppercase}
-.card{background:#1a1d2e;border:1px solid #2a2d3e;border-radius:12px;padding:16px 18px;margin-bottom:10px}
+.section-label{font-size:12px;font-weight:600;color:var(--text-color);opacity:0.6;margin-bottom:10px;letter-spacing:0.06em;text-transform:uppercase}
+.card{background:var(--secondary-background-color);border:1px solid rgba(128,128,128,0.2);border-radius:12px;padding:16px 18px;margin-bottom:10px}
 .signal-card{border-radius:12px;padding:20px 24px;margin-bottom:10px;text-align:center}
 .signal-buy{background:linear-gradient(135deg,#1a3a1a,#0d2b1a);border:1px solid #00c896}
 .signal-sell{background:linear-gradient(135deg,#3a1a1a,#2b0d0d);border:1px solid #ff4b4b}
@@ -41,32 +41,32 @@ st.markdown("""
 .signal-sell .signal-text{color:#ff4b4b}
 .signal-hold .signal-text{color:#4c9be8}
 .target-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-.target-metric{background:#13151f;border-radius:8px;padding:12px 14px}
-.target-metric-label{font-size:11px;color:#555;margin-bottom:4px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase}
-.target-metric-value{font-size:22px;font-weight:600}
-.range-labels{display:flex;justify-content:space-between;font-size:11px;color:#555;margin-top:6px}
+.target-metric{background:var(--background-color);border:1px solid rgba(128,128,128,0.15);border-radius:8px;padding:12px 14px}
+.target-metric-label{font-size:11px;color:var(--text-color);opacity:0.55;margin-bottom:4px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase}
+.target-metric-value{font-size:22px;font-weight:600;color:var(--text-color)}
+.range-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--text-color);opacity:0.55;margin-top:6px}
 .move-pill{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:5px 12px;border-radius:20px;margin-bottom:14px}
-.pill-bear{background:#3a1a1a;color:#ff4b4b}
-.pill-bull{background:#1a3a1a;color:#00c896}
-.pill-neut{background:#2a2a2a;color:#888}
-.driver-card{background:#1a1d2e;border:1px solid #2a2d3e;border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.pill-bear{background:rgba(255,75,75,0.15);color:#ff4b4b}
+.pill-bull{background:rgba(0,200,150,0.15);color:#00c896}
+.pill-neut{background:var(--secondary-background-color);color:var(--text-color);opacity:0.7}
+.driver-card{background:var(--secondary-background-color);border:1px solid rgba(128,128,128,0.2);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px}
 .driver-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.driver-text{font-size:13px;color:#e0e0e0;line-height:1.4}
-.driver-sub{font-size:11px;color:#555;margin-top:2px}
-.news-card{background:#1a1d2e;border:1px solid #2a2d3e;border-radius:12px;padding:14px 16px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start}
-.news-index{font-size:12px;font-weight:600;color:#555;min-width:18px;padding-top:2px}
+.driver-text{font-size:13px;color:var(--text-color);line-height:1.4}
+.driver-sub{font-size:11px;color:var(--text-color);opacity:0.55;margin-top:2px}
+.news-card{background:var(--secondary-background-color);border:1px solid rgba(128,128,128,0.2);border-radius:12px;padding:14px 16px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start}
+.news-index{font-size:12px;font-weight:600;color:var(--text-color);opacity:0.55;min-width:18px;padding-top:2px}
 .news-body{flex:1;min-width:0}
-.news-title{font-size:14px;font-weight:600;color:#e0e0e0;line-height:1.4;margin-bottom:5px}
-.news-snippet{font-size:13px;color:#888;line-height:1.5;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.news-title{font-size:14px;font-weight:600;color:var(--text-color);line-height:1.4;margin-bottom:5px}
+.news-snippet{font-size:13px;color:var(--text-color);opacity:0.65;line-height:1.5;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .news-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .badge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:6px}
-.badge-pos{background:#1a3a1a;color:#4caf50}
-.badge-neg{background:#3a1a1a;color:#f44336}
-.badge-neu{background:#2a2a2a;color:#888}
-.news-date{font-size:11px;color:#555}
-.bt-metric{background:#13151f;border-radius:8px;padding:12px;text-align:center}
-.bt-metric-val{font-size:22px;font-weight:700}
-.bt-metric-label{font-size:11px;color:#666;margin-top:4px}
+.badge-pos{background:rgba(0,200,150,0.15);color:#00c896}
+.badge-neg{background:rgba(255,75,75,0.15);color:#f44336}
+.badge-neu{background:var(--secondary-background-color);color:var(--text-color);opacity:0.7}
+.news-date{font-size:11px;color:var(--text-color);opacity:0.55}
+.bt-metric{background:var(--background-color);border:1px solid rgba(128,128,128,0.15);border-radius:8px;padding:12px;text-align:center}
+.bt-metric-val{font-size:22px;font-weight:700;color:var(--text-color)}
+.bt-metric-label{font-size:11px;color:var(--text-color);opacity:0.6;margin-top:4px}
 </style>
 """, unsafe_allow_html=True)
 
@@ -325,16 +325,16 @@ if not strategy_df.empty:
     sign_str = "+" if combined_signed_pct >= 0 else ""
 
     st.markdown(f"""
-    <div style="background:#1a1d2e;border:1px solid {verdict_color};border-radius:12px;padding:16px 20px;margin-bottom:14px">
+    <div style="background:var(--secondary-background-color);border:1px solid {verdict_color};border-radius:12px;padding:16px 20px;margin-bottom:14px">
         <div>
-            <div style="font-size:11px;color:#888;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">Final Verdict</div>
-            <div style="font-size:26px;font-weight:800;color:{verdict_color}">{verdict_icon} {verdict} <span style="font-size:15px;font-weight:500;color:#aaa">({sign_str}{combined_signed_pct:.0f}%)</span></div>
+            <div style="font-size:11px;color:var(--text-color);opacity:0.6;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">Final Verdict</div>
+            <div style="font-size:26px;font-weight:800;color:{verdict_color}">{verdict_icon} {verdict} <span style="font-size:15px;font-weight:500;color:var(--text-color);opacity:0.7">({sign_str}{combined_signed_pct:.0f}%)</span></div>
         </div>
         <div style="margin-top:12px">
             <div style="position:relative;height:8px;border-radius:4px;background:linear-gradient(90deg,#ff4b4b 0%,#3a2a2a 45%,#2a2a2a 50%,#1a3a2a 55%,#00c896 100%)">
-                <div style="position:absolute;left:{gauge_pos_pct}%;top:-4px;width:3px;height:16px;background:white;border-radius:2px;transform:translateX(-50%)"></div>
+                <div style="position:absolute;left:{gauge_pos_pct}%;top:-4px;width:3px;height:16px;background:#ffffff;border-radius:2px;transform:translateX(-50%);box-shadow:0 0 4px rgba(0,0,0,0.6)"></div>
             </div>
-            <div style="display:flex;justify-content:space-between;font-size:10px;color:#666;margin-top:4px">
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-color);opacity:0.55;margin-top:4px">
                 <span>← Strong Sell (-100%)</span>
                 <span>Neutral (0%)</span>
                 <span>Strong Buy (+100%) →</span>
@@ -545,8 +545,8 @@ if not chart_df.empty:
     if live_price:
         fig.add_hline(
             y=live_price,
-            line=dict(color="#ffffff", width=1, dash="solid"),
-            opacity=0.4, row=1, col=1
+            line=dict(color="#333333", width=1, dash="solid"),
+            opacity=0.5, row=1, col=1
         )
 
     # Volume bars
@@ -578,7 +578,7 @@ if not chart_df.empty:
         text=f"<b>{arrow} {pred}</b>",
         showarrow=False,
         font=dict(color=marker_color, size=12),
-        bgcolor="#0e1117",
+        bgcolor="rgba(0,0,0,0)",
         bordercolor=marker_color,
         borderwidth=1,
         borderpad=4,
@@ -586,13 +586,13 @@ if not chart_df.empty:
     )
 
     fig.update_layout(
-        paper_bgcolor="#0e1117", plot_bgcolor="#0e1117", font_color="#ffffff",
+        paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", font_color=None,
         xaxis_rangeslider_visible=False, height=480,
         margin=dict(l=0, r=0, t=10, b=0),
-        yaxis=dict(gridcolor="#1e2130"),
-        yaxis2=dict(gridcolor="#1e2130"),
-        xaxis=dict(type="category", gridcolor="#1e2130", tickangle=-45, tickfont=dict(size=10), nticks=8),
-        xaxis2=dict(type="category", gridcolor="#1e2130", tickangle=-45, tickfont=dict(size=10), nticks=8),
+        yaxis=dict(gridcolor="rgba(128,128,128,0.2)"),
+        yaxis2=dict(gridcolor="rgba(128,128,128,0.2)"),
+        xaxis=dict(type="category", gridcolor="rgba(128,128,128,0.2)", tickangle=-45, tickfont=dict(size=10), nticks=8),
+        xaxis2=dict(type="category", gridcolor="rgba(128,128,128,0.2)", tickangle=-45, tickfont=dict(size=10), nticks=8),
         showlegend=False
     )
     st.plotly_chart(fig, use_container_width=True)
@@ -607,7 +607,7 @@ if not chart_df.empty:
     if resistance_val:
         info_cols[1].markdown(f"<div style='font-size:11px;color:#666'>RESISTANCE</div><div style='font-size:15px;font-weight:600;color:#ff4b4b'>${resistance_val:.2f}</div>", unsafe_allow_html=True)
     if live_price:
-        info_cols[2].markdown(f"<div style='font-size:11px;color:#666'>CURRENT PRICE</div><div style='font-size:15px;font-weight:600;color:#ffffff'>${live_price:.2f}</div>", unsafe_allow_html=True)
+        info_cols[2].markdown(f"<div style='font-size:11px;color:var(--text-color);opacity:0.6'>CURRENT PRICE</div><div style='font-size:15px;font-weight:600;color:var(--text-color)'>${live_price:.2f}</div>", unsafe_allow_html=True)
     info_cols[3].markdown(f"<div style='font-size:11px;color:#666'>AI PREDICTION</div><div style='font-size:15px;font-weight:600;color:{marker_color}'>{pred_icon} {pred_word} ({conf}%)</div>", unsafe_allow_html=True)
 
 else:
@@ -621,9 +621,9 @@ with col_rsi:
     if rsi_val is not None:
         fig_rsi = go.Figure(go.Indicator(
             mode="gauge+number", value=rsi_val,
-            number={"font": {"color": "white", "size": 36}},
+            number={"font": {"size": 36}},
             gauge={
-                "axis": {"range": [0, 100], "tickcolor": "white"},
+                "axis": {"range": [0, 100]},
                 "bar": {"color": "#4c9be8"},
                 "steps": [
                     {"range": [0, 30], "color": "#ff4b4b"},
@@ -631,11 +631,11 @@ with col_rsi:
                     {"range": [50, 70], "color": "#4c9be8"},
                     {"range": [70, 100], "color": "#00c896"},
                 ],
-                "bgcolor": "#0e1117",
+                "bgcolor": "rgba(0,0,0,0)",
             },
-            title={"text": "RSI (14)", "font": {"color": "white", "size": 16}},
+            title={"text": "RSI (14)", "font": {"size": 16}},
         ))
-        fig_rsi.update_layout(paper_bgcolor="#0e1117", font_color="white",
+        fig_rsi.update_layout(paper_bgcolor="rgba(0,0,0,0)", font_color=None,
                                height=250, margin=dict(l=20, r=20, t=40, b=20))
         st.plotly_chart(fig_rsi, use_container_width=True)
         if rsi_val >= 70: st.caption("🔴 Overbought — potential pullback")
@@ -655,13 +655,13 @@ with col_sent:
         labels=["Positive", "Neutral", "Negative"],
         values=[pos, neu, neg], hole=0.5,
         marker_colors=["#00c896", "#4c9be8", "#ff4b4b"],
-        textinfo="label+percent", textfont=dict(color="white", size=13),
+        textinfo="label+percent", textfont=dict(size=13),
     ))
     fig_sent.update_layout(
-        paper_bgcolor="#0e1117", font_color="white", height=250,
+        paper_bgcolor="rgba(0,0,0,0)", font_color=None, height=250,
         margin=dict(l=20, r=20, t=40, b=20), showlegend=False,
         annotations=[dict(text=dominant_news_label, x=0.5, y=0.5,
-                          font_size=14, font_color="white", showarrow=False)]
+                          font_size=14, showarrow=False)]
     )
     st.plotly_chart(fig_sent, use_container_width=True)
     st.progress(float(pos), text=f"Positive: {pos*100:.1f}%")
@@ -713,7 +713,7 @@ else:
                 <div class="target-metric-value" style="color:{val_color}">${high_target:.2f}</div>
             </div>
         </div>
-        <div style="height:6px;border-radius:3px;background:#13151f;margin-top:4px">
+        <div style="height:6px;border-radius:3px;background:var(--secondary-background-color);margin-top:4px">
             <div style="height:100%;border-radius:3px;background:{val_color};width:55%"></div>
         </div>
         <div class="range-labels">
@@ -839,13 +839,13 @@ if not strategy_df.empty:
                 annotation_text=f"Initial ${bt_capital:,}"
             )
             fig_eq.update_layout(
-                paper_bgcolor="#0e1117", plot_bgcolor="#0e1117",
-                font_color="#ffffff", height=250,
+                paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
+                font_color=None, height=250,
                 margin=dict(l=0, r=0, t=20, b=0),
-                yaxis=dict(gridcolor="#1e2130", tickprefix="$"),
-                xaxis=dict(gridcolor="#1e2130"),
+                yaxis=dict(gridcolor="rgba(128,128,128,0.2)", tickprefix="$"),
+                xaxis=dict(gridcolor="rgba(128,128,128,0.2)"),
                 showlegend=False,
-                title=dict(text="Portfolio Equity Curve", font=dict(color="#888", size=12))
+                title=dict(text="Portfolio Equity Curve", font=dict(size=12))
             )
             st.plotly_chart(fig_eq, use_container_width=True)
 
